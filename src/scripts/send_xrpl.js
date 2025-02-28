@@ -13,8 +13,16 @@ console.log(wallet.address) // rBK4ZGt13YKjdBaB5FbZyoiTB2NubEQief
 const prepared = await client.autofill({
     "TransactionType": "Payment",
     "Account": wallet.address,
-    "DeliverMax": xrpl.xrpToDrops("22"),
-    "Destination": "rJF9ntBXxcJLLMmkVPcFkjJFwcefKnpEv1"
+    "DeliverMax": "1",//xrpl.xrpToDrops("22"),
+    "Destination": "rJF9ntBXxcJLLMmkVPcFkjJFwcefKnpEv1",
+    "Memos": [
+      {
+        "Memo": {
+          "MemoType": "", // Optional: You can leave it blank or provide a custom type
+          "MemoData": "4f6c697669657265725f74657374" // Store the Merkle root in hexadecimal format
+        }
+      }
+    ]
     })
     const max_ledger = prepared.LastLedgerSequence
     console.log("Prepared transaction instructions:", prepared)
